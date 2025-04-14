@@ -54,7 +54,7 @@ jobs:
         zip -r release_artifacts.zip output_final
 
     - name: Upload as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: release_artifacts
         path: release_artifacts.zip
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Download artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v2
       with:
         name: release_artifacts
 
