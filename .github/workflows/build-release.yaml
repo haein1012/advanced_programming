@@ -1,0 +1,77 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  release:
+    types: [created]  # git tag 로 release 생성 시 실행
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up .NET (for C#)
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Set up Java (for Kotlin)
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Build C++ project
+      run: |
+        mkdir -p output
+        g++ cpp/*.cpp -o output/cpp_program
+        chmod +x output/cpp_program
+
+    - name: Build C# project
+      run: |
+        dotnet new console -o csharp_app --force
+        cp csharp/*.cs csharp_app/Program.cs
+        dotnet build csharp_app -o output/csharp
+
+    - name: Build Kotlin project
+      run: |
+        sudo apt update && sudo apt install -y kotlin zip
+        kotlinc kotlin/*.kt -include-runtime -d output/kotlin_program.jar
+
+    - name: Zip built artifacts
+      run: |
+        mkdir output_final
+        cp output/cpp_program output_final/
+        cp output/csharp/* output_final/
+        cp output/kotlin_program.jar output_final/
+        zip -r release_artifacts.zip output_final
+
+    - name: Upload as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: release_artifacts
+        path: release_artifacts.zip
+
+  release:
+    needs: build
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: release_artifacts
+
+    - name: Upload to GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: release_artifacts.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
