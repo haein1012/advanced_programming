@@ -8,6 +8,7 @@ void runEigen();
 void runFacade();
 void runFactory();
 void runMethodChain();
+void runBuilder();
 
 int main() {
     runAdapter();
@@ -16,5 +17,6 @@ int main() {
     runFacade();
     runFactory();
     runMethodChain();
+    runBuilder();
     return 0;
 }

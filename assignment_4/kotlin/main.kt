@@ -4,8 +4,21 @@ fun main() {
     println(adapter.fetch())
 
     println("[Decorator]")
-    val coffee = SugarDecorator(MilkDecorator(BasicCoffee()))
-    println("총 커피 가격: ${coffee.cost()}")
+    val basicCoffee = BasicCoffee()
+    println("basicCoffee = BasicCoffee()")
+    println("basicCoffee.cost() = ${basicCoffee.cost()}") // 5
+
+    val coffeeWithMilk = MilkDecorator(basicCoffee)
+    println("\ncoffeeWithMilk = MilkDecorator(basicCoffee)")
+    println("coffeeWithMilk.cost() = ${coffeeWithMilk.cost()}") // 7
+
+    val coffeeWithSugar = SugarDecorator(basicCoffee)
+    println("\ncoffeeWithSugar = SugarDecorator(basicCoffee)")
+    println("coffeeWithSugar.cost() = ${coffeeWithSugar.cost()}") // 6
+
+    val coffeeWithMilkAndSugar = SugarDecorator(coffeeWithMilk)
+    println("\ncoffeeWithMilkAndSugar = SugarDecorator(coffeeWithMilk)")
+    println("coffeeWithMilkAndSugar.cost() = ${coffeeWithMilkAndSugar.cost()}") // 8
 
     println("[Facade]")
     val myPC = Computer()
@@ -18,7 +31,32 @@ fun main() {
     println("Cat: ${cat?.speak()}")
 
     println("[Method Chaining]")
+    val calc1 = Calculator()
+    val result1 = calc1.add(5.0).getResult()
+    println("add(5.0): $result1")
+
+    val calc2 = Calculator()
+    val result2 = calc2.multiply(2.0).getResult()
+    println("multiply(2.0): $result2")
+
+    val calc3 = Calculator()
+    val result3 = calc3.subtract(3.0).getResult()
+    println("subtract(3.0): $result3")
+
+    val calc4 = Calculator()
+    val result4 = calc4.divide(2.0).getResult()
+    println("divide(2.0): $result4")
+
     val calc = Calculator()
-    val result = calc.add(10.0).subtract(3.0).multiply(2.0).divide(7.0).getResult()
-    println("계산 결과: $result")
+    val finalResult = calc.add(5.0).multiply(2.0).subtract(3.0).divide(2.0).getResult()
+    println("result: $finalResult")
+
+    println("[Builder]")
+    val person = PersonBuilder()
+        .withName("홍길동")
+        .withAge(20)
+        .withAddress("부산대학교 양산캠퍼스")
+        .build()
+    println(person)
+
 }

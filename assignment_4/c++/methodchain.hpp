@@ -35,6 +35,18 @@ public:
 
 void runMethodChain() {
     Calculator calc;
-    double result = calc.add(10).subtract(2).multiply(3).divide(4).getResult();
-    cout << "[Method Chaining] 계산 결과: " << result << endl;
+
+    calc.add(10);
+    cout << "add(10): " << calc.getResult() << endl;
+
+    calc.subtract(2);
+    cout << "subtract(2): " << calc.getResult() << endl;
+
+    calc.multiply(3);
+    cout << "multiply(3): " << calc.getResult() << endl;
+
+    calc.divide(4);
+    cout << "divide(4): " << calc.getResult() << endl;
+
+    cout << "최종 계산 결과: " << calc.getResult() << endl;
 }
