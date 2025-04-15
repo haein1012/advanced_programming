@@ -53,7 +53,7 @@ jobs:
       run: |
         mkdir -p assignment_4/output_final
         cp assignment_4/output_cpp/cpp_program assignment_4/output_final/
-        cp assignment_4/output_csharp/csharp/* assignment_4/output_final/
+        cp assignment_4/output_csharp/* assignment_4/output_final/
         cp assignment_4/output_kotlin/kotlin_program.jar assignment_4/output_final/
         zip -r assignment_4/release_artifacts.zip assignment_4/output_final
 
