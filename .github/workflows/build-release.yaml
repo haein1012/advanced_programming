@@ -42,7 +42,6 @@ jobs:
     - name: Build C# project
       run: |
         dotnet new console -o assignment_4/csharp --force --framework net8.0
-        cp assignment_4/csharp_src/*.cs assignment_4/csharp/
         dotnet build assignment_4/csharp -o assignment_4/output_csharp
 
     - name: Build Kotlin project
