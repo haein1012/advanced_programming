@@ -1,7 +1,8 @@
 #include <iostream>
 #include <Eigen/Dense>
+using namespace std;
 
-int main() {
+void runEigen() {
     Eigen::Matrix<float, 3, 2> A;
     A << 1, 2,
          3, 4,
@@ -12,8 +13,5 @@ int main() {
          10, 11, 12;
 
     Eigen::Matrix<float, 3, 3> C = A * B;
-
-    std::cout << "A * B =\n" << C << std::endl;
-
-    return 0;
+    cout << "[Eigen] A * B =\n" << C << endl;
 }

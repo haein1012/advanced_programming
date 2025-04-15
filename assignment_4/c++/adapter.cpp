@@ -1,31 +1,24 @@
 #include <string>
-#include <iostream>
-
 using namespace std;
 
 class ExternalClass {
-    public:
-        string search() {
-            return "get user info";
-        }
-    };
-    
-    class Adapter {
-        ExternalClass* external;
-    public:
-        Adapter(ExternalClass* ext) : external(ext) {}
-    
-        string fetch() {
-            return external->search();
-        }
-    };
+public:
+    string search() {
+        return "get user info";
+    }
+};
 
-int main() {
-    ExternalClass* legacyAPI = new ExternalClass();
-    Adapter adapter(legacyAPI);
+class Adapter {
+    ExternalClass* external;
+public:
+    Adapter(ExternalClass* ext) : external(ext) {}
+    string fetch() {
+        return external->search();
+    }
+};
 
-    cout << adapter.fetch() << endl;  
-
-    delete legacyAPI; 
-    return 0;
+void runAdapter() {
+    ExternalClass ext;
+    Adapter adapter(&ext);
+    cout << "[Adapter] " << adapter.fetch() << endl;
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 class Calculator {
 private:
@@ -23,9 +24,7 @@ public:
     }
 
     Calculator& divide(double value) {
-        if (value != 0) {
-            result /= value;
-        }
+        if (value != 0) result /= value;
         return *this;
     }
 
@@ -33,3 +32,9 @@ public:
         return result;
     }
 };
+
+void runMethodChain() {
+    Calculator calc;
+    double result = calc.add(10).subtract(2).multiply(3).divide(4).getResult();
+    cout << "[Method Chaining] 계산 결과: " << result << endl;
+}

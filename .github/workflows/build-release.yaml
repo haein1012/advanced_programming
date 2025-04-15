@@ -34,7 +34,7 @@ jobs:
     - name: Build C++ project # c++ 컴파일
       run: |
         mkdir -p assignment_4/output_cpp
-        g++ -I /usr/include/eigen3 assignment_4/c++/main.cpp -o assignment_4/output_cpp/cpp_program
+        g++ -I /usr/include/eigen3 assignment_4/c++/*.cpp -o assignment_4/output_cpp/cpp_program
         chmod +x assignment_4/output_cpp/cpp_program
 
     - name: Build C# project

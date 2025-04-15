@@ -10,16 +10,12 @@ public:
 
 class Dog : public Animal {
 public:
-    string speak() override {
-        return "멍멍!";
-    }
+    string speak() override { return "멍멍!"; }
 };
 
 class Cat : public Animal {
 public:
-    string speak() override {
-        return "야옹!";
-    }
+    string speak() override { return "야옹!"; }
 };
 
 class AnimalFactory {
@@ -31,12 +27,9 @@ public:
     }
 };
 
-int main() {
-    auto animal = AnimalFactory::createAnimal("dog");
-    if (animal) {
-        cout << animal->speak() << endl;  
-    } else {
-        cout << "Unknown animal type" << endl;
-    }
-    return 0;
+void runFactory() {
+    auto dog = AnimalFactory::createAnimal("dog");
+    auto cat = AnimalFactory::createAnimal("cat");
+    cout << "[Factory] Dog: " << dog->speak() << endl;
+    cout << "[Factory] Cat: " << cat->speak() << endl;
 }
