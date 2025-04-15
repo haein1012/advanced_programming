@@ -41,7 +41,11 @@ jobs:
     
     - name: Build C# project
       run: |
-        dotnet build assignment_4/csharp -o assignment_4/output_csharp
+        dotnet new console -o assignment_4/csharp_temp --force --framework net8.0
+        cp assignment_4/csharp/*.cs assignment_4/csharp_temp/
+        rm assignment_4/csharp_temp/Program.cs
+        dotnet build assignment_4/csharp_temp -o assignment_4/output_csharp
+
 
     - name: Build Kotlin project
       run: |
