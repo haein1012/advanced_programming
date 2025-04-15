@@ -53,7 +53,7 @@ class Program
 
         Console.WriteLine("getResult() = " + calc.GetResult());
 
-        Console.WriteLine("[Builder Pattern]");
+        Console.WriteLine("\n[Builder Pattern]");
         var person = new PersonBuilder()
             .WithName("홍길동")
             .WithAge(20)
@@ -61,7 +61,5 @@ class Program
             .Build();
         Console.WriteLine(person);
         Console.WriteLine();
-
-
     }
 }
