@@ -32,3 +32,4 @@ void runFacade() {
     cout << "[Facade]" << endl;
     Computer computer;
     computer.boot();
+}
