@@ -31,13 +31,14 @@ jobs:
     - name: Install Eigen
       run: sudo apt update && sudo apt install -y libeigen3-dev
 
-    - name: Build C++ project # c++ 컴파일
+    - name: Install GCC 11 and build C++ project
       run: |
+        sudo apt update
+        sudo apt install -y g++-11
         mkdir -p assignment_4/output_cpp
-        g++ -I /usr/include/eigen3 assignment_4/c++/*.cpp -o assignment_4/output_cpp/cpp_program
+        g++-11 -I /usr/include/eigen3 assignment_4/c++/*.cpp -o assignment_4/output_cpp/cpp_program
         chmod +x assignment_4/output_cpp/cpp_program
-        
-
+    
     - name: Build C# project
       run: |
         dotnet new console -o assignment_4/csharp --force
