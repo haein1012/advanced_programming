@@ -47,7 +47,7 @@ jobs:
       run: |
         sudo apt update && sudo apt install -y kotlin zip
         mkdir -p assignment_4/output_kotlin
-        kotlinc assignment_4/kotlin/*.kt -include-runtime -d output_kotlin/kotlin_program.jar
+        kotlinc assignment_4/kotlin/*.kt -include-runtime -d assignment_4/output_kotlin/kotlin_program.jar
 
     - name: Zip built artifacts
       run: |
