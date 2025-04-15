@@ -53,6 +53,7 @@ class Program
 
         Console.WriteLine("getResult() = " + calc.GetResult());
 
+
         Console.WriteLine("\n[Builder Pattern]");
         var person = new PersonBuilder()
             .WithName("홍길동")
