@@ -33,20 +33,21 @@ jobs:
 
     - name: Build C++ project # c++ 컴파일
       run: |
-        mkdir -p output
-        g++ -I /usr/include/eigen3 assignment_4/c++/*.cpp -o assignment_4/output/cpp_program
-        chmod +x assignment_4/output/cpp_program
+        mkdir -p assignment_4/output_cpp
+        g++ -I /usr/include/eigen3 assignment_4/c++/*.cpp -o assignment_4/output_cpp/cpp_program
+        chmod +x assignment_4/output_cpp/cpp_program
 
     - name: Build C# project
       run: |
         dotnet new console -o csharp_app --force
         cp assignment_4/csharp/*.cs csharp_app/
-        dotnet build csharp_app -o assignment_4/output/cshart
+        dotnet build csharp_app -o assignment_4/output_csharp
 
     - name: Build Kotlin project
       run: |
         sudo apt update && sudo apt install -y kotlin zip
-        kotlinc assignment_4/kotlin/*.kt -include-runtime -d output/kotlin_program.jar
+        mkdir -p assignment_4/output_kotlin
+        kotlinc assignment_4/kotlin/*.kt -include-runtime -d output_kotlin/kotlin_program.jar
 
     - name: Zip built artifacts
       run: |
