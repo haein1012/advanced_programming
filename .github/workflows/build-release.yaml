@@ -31,33 +31,33 @@ jobs:
     - name: Build C++ project # c++ 컴파일
       run: |
         mkdir -p output
-        g++ cpp/*.cpp -o output/cpp_program
+        g++ assignment_4/c++/*.cpp -o output/cpp_program
         chmod +x output/cpp_program
 
     - name: Build C# project
       run: |
         dotnet new console -o csharp_app --force
-        cp csharp/*.cs csharp_app/Program.cs
+        cp assignment_4/csharp/*.cs csharp_app/Program.cs
         dotnet build csharp_app -o output/csharp
 
     - name: Build Kotlin project
       run: |
         sudo apt update && sudo apt install -y kotlin zip
-        kotlinc kotlin/*.kt -include-runtime -d output/kotlin_program.jar
+        kotlinc assignment_4/kotlin/*.kt -include-runtime -d output/kotlin_program.jar
 
     - name: Zip built artifacts
       run: |
         mkdir output_final
-        cp output/cpp_program output_final/
-        cp output/csharp/* output_final/
-        cp output/kotlin_program.jar output_final/
-        zip -r release_artifacts.zip output_final
+        cp assignment_4/output/cpp_program assignment_4/output_final/
+        cp assignment_4/output/csharp/* assignment_4/output_final/
+        cp assignment_4/output/kotlin_program.jar assignment_4/output_final/
+        zip -r assignment_4/release_artifacts.zip assignment_4/output_final
 
     - name: Upload as artifact
       uses: actions/upload-artifact@v4
       with:
         name: release_artifacts
-        path: release_artifacts.zip
+        path: assignment_4/release_artifacts.zip
 
   release:
     needs: build
@@ -72,6 +72,6 @@ jobs:
     - name: Upload to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: release_artifacts.zip
+        files: assignment_4/release_artifacts.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
