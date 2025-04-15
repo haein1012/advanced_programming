@@ -41,7 +41,8 @@ jobs:
     
     - name: Build C# project
       run: |
-        dotnet new console -o assignment_4/csharp --force
+        dotnet new console -o assignment_4/csharp --force --framework net8.0
+        cp assignment_4/csharp_src/*.cs assignment_4/csharp/
         dotnet build assignment_4/csharp -o assignment_4/output_csharp
 
     - name: Build Kotlin project
@@ -66,7 +67,7 @@ jobs:
 
   release:
     needs: build
-    if: github.event_name == 'push'  # 수동 릴리즈 제거!
+    if: github.event_name == 'push'  
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
@@ -80,7 +81,7 @@ jobs:
           tag_name: auto-${{ github.run_number }}
           name: "Auto Release ${{ github.run_number }}"
           body: "Automated release"
-          files: release_artifacts.zip   # ⬅️ 경로 수정! 폴더명 제거
+          files: release_artifacts.zip  
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
