@@ -65,29 +65,21 @@ jobs:
 
   release:
     needs: build
-    if: github.event_name == 'push' || github.event_name == 'release'
+    if: github.event_name == 'push'  # 수동 릴리즈 제거!
     runs-on: ubuntu-latest
     steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: release_artifacts
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: release_artifacts
 
-    - name: Create GitHub Release (자동 생성)
-      if: github.event_name == 'push'
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: auto-${{ github.run_number }}
-        name: "Auto Release ${{ github.run_number }}"
-        body: "Automated release"
-        files: assignment_4/release_artifacts.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub Release (자동 생성)
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: auto-${{ github.run_number }}
+          name: "Auto Release ${{ github.run_number }}"
+          body: "Automated release"
+          files: release_artifacts.zip   # ⬅️ 경로 수정! 폴더명 제거
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload to GitHub Release (수동 release용)
-      if: github.event_name == 'release'
-      uses: softprops/action-gh-release@v1
-      with:
-        files: assignment_4/release_artifacts.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
