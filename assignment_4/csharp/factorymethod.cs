@@ -13,7 +13,7 @@ class Cat : Animal {
 }
 
 class AnimalFactory {
-    public static Animal CreateAnimal(string type) {
+    public static Animal? CreateAnimal(string type) {
         return type switch {
             "dog" => new Dog(),
             "cat" => new Cat(),
