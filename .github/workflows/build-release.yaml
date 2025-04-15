@@ -36,6 +36,7 @@ jobs:
         mkdir -p assignment_4/output_cpp
         g++ -I /usr/include/eigen3 assignment_4/c++/*.cpp -o assignment_4/output_cpp/cpp_program
         chmod +x assignment_4/output_cpp/cpp_program
+        
 
     - name: Build C# project
       run: |
@@ -64,7 +65,7 @@ jobs:
 
   release:
     needs: build
-    if: github.event_name == 'release'
+    if: github.event_name == 'push' || github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
     - name: Download artifact
@@ -72,7 +73,19 @@ jobs:
       with:
         name: release_artifacts
 
-    - name: Upload to GitHub Release
+    - name: Create GitHub Release (자동 생성)
+      if: github.event_name == 'push'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: auto-${{ github.run_number }}
+        name: "Auto Release ${{ github.run_number }}"
+        body: "Automated release"
+        files: assignment_4/release_artifacts.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload to GitHub Release (수동 release용)
+      if: github.event_name == 'release'
       uses: softprops/action-gh-release@v1
       with:
         files: assignment_4/release_artifacts.zip
