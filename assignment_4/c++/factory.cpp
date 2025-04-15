@@ -30,6 +30,7 @@ public:
 void runFactory() {
     auto dog = AnimalFactory::createAnimal("dog");
     auto cat = AnimalFactory::createAnimal("cat");
-    cout << "[Factory] Dog: " << dog->speak() << endl;
-    cout << "[Factory] Cat: " << cat->speak() << endl;
+    cout << "[Factory Method Pattern]" << endl;
+    cout << "Dog: " << dog->speak() << endl;
+    cout << "Cat: " << cat->speak() << endl;
 }

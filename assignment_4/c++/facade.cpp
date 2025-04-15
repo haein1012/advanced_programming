@@ -29,7 +29,7 @@ public:
 };
 
 void runFacade() {
-    cout << "[Facade]" << endl;
+    cout << "[Facade Pattern]" << endl;
     Computer computer;
     computer.boot();
 }

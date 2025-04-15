@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// 각각 cpp 파일이 있는 경우 include하거나 compile 시 함께 묶음
 void runAdapter();
 void runDecorator();
 void runEigen();
@@ -12,11 +11,17 @@ void runBuilder();
 
 int main() {
     runAdapter();
+    cout << endl;
     runDecorator();
+    cout << endl;
     runEigen();
+    cout << endl;
     runFacade();
+    cout << endl;
     runFactory();
+    cout << endl;
     runMethodChain();
+    cout << endl;
     runBuilder();
     return 0;
 }

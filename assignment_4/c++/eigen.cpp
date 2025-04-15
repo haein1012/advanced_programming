@@ -13,5 +13,6 @@ void runEigen() {
          10, 11, 12;
 
     Eigen::Matrix<float, 3, 3> C = A * B;
-    cout << "[Eigen] A * B =\n" << C << endl;
+    cout << "[Eigen]" << endl;
+    cout << " A * B =\n" << C << endl;
 }

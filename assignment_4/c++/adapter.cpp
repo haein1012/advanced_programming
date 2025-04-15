@@ -21,5 +21,7 @@ public:
 void runAdapter() {
     ExternalClass ext;
     Adapter adapter(&ext);
-    cout << "[Adapter] " << adapter.fetch() << endl;
+    cout << "[Adapter Pattern]" << endl;
+    cout << adapter.fetch() << endl;
+
 }

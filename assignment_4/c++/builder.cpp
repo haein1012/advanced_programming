@@ -34,7 +34,7 @@ public:
 };
 
 void runBuilder() {
-    std::cout << "=== Builder Pattern ===" << std::endl;
+    std::cout << "[Builder Pattern]" << std::endl;
     Person person = PersonBuilder()
                         .withName("홍길동")
                         .withAge(20)

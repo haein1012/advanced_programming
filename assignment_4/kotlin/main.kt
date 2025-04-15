@@ -1,9 +1,10 @@
 fun main() {
-    println("[Adapter]")
+    println("[Adapter Pattern]")
     val adapter = Adapter(ExternalClass())
     println(adapter.fetch())
 
-    println("[Decorator]")
+    println()
+    println("[Decorator Pattern]")
     val basicCoffee = BasicCoffee()
     println("basicCoffee = BasicCoffee()")
     println("basicCoffee.cost() = ${basicCoffee.cost()}") // 5
@@ -20,38 +21,40 @@ fun main() {
     println("\ncoffeeWithMilkAndSugar = SugarDecorator(coffeeWithMilk)")
     println("coffeeWithMilkAndSugar.cost() = ${coffeeWithMilkAndSugar.cost()}") // 8
 
-    println("[Facade]")
+    println()
+    println("[Facade Pattern]")
     val myPC = Computer()
     myPC.boot()
 
-    println("[Factory]")
+    println()
+    println("[Factory Method Pattern]")
     val dog = AnimalFactory.createAnimal("dog")
     val cat = AnimalFactory.createAnimal("cat")
     println("Dog: ${dog?.speak()}")
     println("Cat: ${cat?.speak()}")
 
-    println("[Method Chaining]")
-    val calc1 = Calculator()
-    val result1 = calc1.add(5.0).getResult()
+    println()
+    println("[Method Chain Pattern]")
+    val calc = Calculator()
+
+    val result1 = calc.add(5.0).getResult()
     println("add(5.0): $result1")
 
-    val calc2 = Calculator()
-    val result2 = calc2.multiply(2.0).getResult()
+    val result2 = calc.multiply(2.0).getResult()
     println("multiply(2.0): $result2")
 
-    val calc3 = Calculator()
-    val result3 = calc3.subtract(3.0).getResult()
+    val result3 = calc.subtract(3.0).getResult()
     println("subtract(3.0): $result3")
 
-    val calc4 = Calculator()
-    val result4 = calc4.divide(2.0).getResult()
+    val result4 = calc.divide(2.0).getResult()
     println("divide(2.0): $result4")
 
-    val calc = Calculator()
-    val finalResult = calc.add(5.0).multiply(2.0).subtract(3.0).divide(2.0).getResult()
+    val finalResult = calc.getResult()
     println("result: $finalResult")
 
-    println("[Builder]")
+
+    println()
+    println("[Builder Pattern]")
     val person = PersonBuilder()
         .withName("홍길동")
         .withAge(20)

@@ -36,6 +36,7 @@ public:
 void runMethodChain() {
     Calculator calc;
 
+    cout << "[Method Chain Pattern]" << endl;
     calc.add(10);
     cout << "add(10): " << calc.getResult() << endl;
 

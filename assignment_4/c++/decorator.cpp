@@ -38,7 +38,7 @@ public:
 };
 
 void runDecorator() {
-    cout << "=== Decorator Pattern ===" << endl;
+    cout << "[Decorator Pattern]" << endl;
 
     Coffee* coffee = new BasicCoffee();
     cout << "coffee = BasicCoffee()" << endl;
