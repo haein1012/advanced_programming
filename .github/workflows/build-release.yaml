@@ -39,9 +39,8 @@ jobs:
 
     - name: Build C# project
       run: |
-        dotnet new console -o csharp_app --force
-        cp assignment_4/csharp/*.cs csharp_app/
-        dotnet build csharp_app -o assignment_4/output_csharp
+        dotnet new console -o assignment_4/csharp --force
+        dotnet build assignment_4/csharp -o assignment_4/output_csharp
 
     - name: Build Kotlin project
       run: |
