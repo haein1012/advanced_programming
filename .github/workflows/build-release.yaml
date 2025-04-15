@@ -66,7 +66,7 @@ jobs:
 
   release:
     needs: build
-    if: github.event_name == 'push'  # 수동 릴리즈 제거!
+    if: github.event_name == 'push'  
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
@@ -80,7 +80,7 @@ jobs:
           tag_name: auto-${{ github.run_number }}
           name: "Auto Release ${{ github.run_number }}"
           body: "Automated release"
-          files: release_artifacts.zip   # ⬅️ 경로 수정! 폴더명 제거
+          files: release_artifacts.zip   
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
